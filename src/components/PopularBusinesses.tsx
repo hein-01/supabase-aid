@@ -391,13 +391,6 @@ const PopularBusinesses = () => {
                     alt="Discover more shops"
                     className="w-full h-[200px] object-cover opacity-30"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <h3 className="text-white text-xl font-bold mb-2">🛍️</h3>
-                      <p className="text-white text-sm font-medium">More shops</p>
-                      <p className="text-white text-sm font-medium">coming soon</p>
-                    </div>
-                  </div>
                 </div>
                 
                 <CardContent className="flex-1 p-3 flex flex-col justify-center items-center text-center">
@@ -646,13 +639,6 @@ const PopularBusinesses = () => {
                       alt="Discover more shops"
                       className="w-full h-[200px] object-cover opacity-30"
                     />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <h3 className="text-white text-xl font-bold mb-2">🛍️</h3>
-                        <p className="text-white text-sm font-medium">More shops</p>
-                        <p className="text-white text-sm font-medium">coming soon</p>
-                      </div>
-                    </div>
                   </div>
                   
                   <CardContent className="flex-1 p-3 flex flex-col justify-center items-center text-center">
