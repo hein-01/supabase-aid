@@ -148,14 +148,14 @@ export default function UserDashboard() {
             <h2 className="text-2xl font-bold">Subscription</h2>
             <Card>
               <CardHeader>
-                <CardTitle>Current Plan</CardTitle>
+                <CardTitle>Business Listing</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-lg font-medium">Free Plan</p>
+                <p className="text-lg font-medium">Not Active</p>
                 <p className="text-muted-foreground mt-2">
                   Upgrade to unlock premium features and boost your business visibility.
                 </p>
-                <Button className="mt-4">Upgrade Now</Button>
+                <Button className="mt-4">List Your Business($2/Year)</Button>
               </CardContent>
             </Card>
             
