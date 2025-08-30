@@ -158,6 +158,19 @@ export default function UserDashboard() {
                 <Button className="mt-4">Upgrade Now</Button>
               </CardContent>
             </Card>
+            
+            <Card>
+              <CardHeader>
+                <CardTitle>POS + Website</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="text-lg font-medium">Not Active</p>
+                <p className="text-muted-foreground mt-2">
+                  Get a complete business solution with Point of Sale system and professional website.
+                </p>
+                <Button className="mt-4">Get Started</Button>
+              </CardContent>
+            </Card>
           </div>
         );
 
