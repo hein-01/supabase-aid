@@ -258,7 +258,7 @@ const PopularBusinesses = () => {
                   size="sm"
                   className="absolute top-2 right-2 px-1 py-2 h-auto w-6 bg-white/80 hover:bg-white z-40"
                 >
-                  <Bookmark className="w-3 h-5 text-gray-600" />
+                  <Bookmark className="w-3 h-3 text-gray-600" />
                 </Button>
               </div>
               
@@ -381,6 +381,43 @@ const PopularBusinesses = () => {
              </Card>
               </SwiperSlide>
             ))}
+            
+            {/* Fixed seventh card - Discover more shops */}
+            <SwiperSlide key="discover-more">
+              <Card className="group w-full max-w-[320px] h-[455px] flex flex-col shadow-lg hover:shadow-2xl transition-all duration-300 mx-auto bg-gradient-to-br from-slate-800 to-slate-900">
+                <div className="relative overflow-hidden rounded-t-lg h-[200px] bg-gradient-to-br from-slate-700 to-slate-800">
+                  <img
+                    src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=320&h=200&fit=crop"
+                    alt="Discover more shops"
+                    className="w-full h-[200px] object-cover opacity-30"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="text-center">
+                      <h3 className="text-white text-xl font-bold mb-2">🛍️</h3>
+                      <p className="text-white text-sm font-medium">More shops</p>
+                      <p className="text-white text-sm font-medium">coming soon</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <CardContent className="flex-1 p-3 flex flex-col justify-center items-center text-center">
+                  <div className="space-y-4">
+                    <h3 className="text-white text-lg font-bold">
+                      Discover more shops
+                    </h3>
+                    <p className="text-white/80 text-sm">
+                      Explore hundreds of businesses and find exactly what you're looking for
+                    </p>
+                    <Button 
+                      style={{ backgroundColor: '#EAB33A' }}
+                      className="w-full h-10 text-black font-medium hover:opacity-90 transition-opacity"
+                    >
+                      Go Now
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </SwiperSlide>
            </Swiper>
           </div>
         </div>
@@ -476,7 +513,7 @@ const PopularBusinesses = () => {
                     size="sm"
                     className="absolute top-2 right-2 px-1 py-2 h-auto w-6 bg-white/80 hover:bg-white z-40"
                   >
-                    <Bookmark className="w-3 h-5 text-gray-600" />
+                    <Bookmark className="w-3 h-3 text-gray-600" />
                   </Button>
                 </div>
                 
@@ -599,6 +636,43 @@ const PopularBusinesses = () => {
                </Card>
                 </SwiperSlide>
               ))}
+              
+              {/* Fixed seventh card - Discover more shops (Mobile) */}
+              <SwiperSlide key="discover-more-mobile">
+                <Card className="group w-full max-w-[320px] h-[455px] flex flex-col shadow-lg hover:shadow-2xl transition-all duration-300 mx-auto bg-gradient-to-br from-slate-800 to-slate-900">
+                  <div className="relative overflow-hidden rounded-t-lg h-[200px] bg-gradient-to-br from-slate-700 to-slate-800">
+                    <img
+                      src="https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=320&h=200&fit=crop"
+                      alt="Discover more shops"
+                      className="w-full h-[200px] object-cover opacity-30"
+                    />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="text-center">
+                        <h3 className="text-white text-xl font-bold mb-2">🛍️</h3>
+                        <p className="text-white text-sm font-medium">More shops</p>
+                        <p className="text-white text-sm font-medium">coming soon</p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <CardContent className="flex-1 p-3 flex flex-col justify-center items-center text-center">
+                    <div className="space-y-4">
+                      <h3 className="text-white text-lg font-bold">
+                        Discover more shops
+                      </h3>
+                      <p className="text-white/80 text-sm">
+                        Explore hundreds of businesses and find exactly what you're looking for
+                      </p>
+                      <Button 
+                        style={{ backgroundColor: '#EAB33A' }}
+                        className="w-full h-10 text-black font-medium hover:opacity-90 transition-opacity"
+                      >
+                        Go Now
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </SwiperSlide>
             </Swiper>
           </div>
         </div>
