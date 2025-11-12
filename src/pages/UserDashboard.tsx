@@ -758,8 +758,15 @@ export default function UserDashboard() {
                             
                             const slotStartTime = booking.slots?.start_time ? new Date(booking.slots.start_time) : null;
                             const slotEndTime = booking.slots?.end_time ? new Date(booking.slots.end_time) : null;
-                            const businessName = booking.business_resources?.businesses?.name || 'N/A';
+                            const businessName = (booking.business_resources?.businesses as any)?.name || 'Unknown Business';
                             const fieldName = booking.business_resources?.name || 'N/A';
+                            
+                            // Debug log to check data structure
+                            console.log('Booking data:', {
+                              business_resources: booking.business_resources,
+                              businessName,
+                              fieldName
+                            });
                             
                             return (
                               <TableRow key={booking.id}>
@@ -835,7 +842,7 @@ export default function UserDashboard() {
                       
                       const slotStartTime = booking.slots?.start_time ? new Date(booking.slots.start_time) : null;
                       const slotEndTime = booking.slots?.end_time ? new Date(booking.slots.end_time) : null;
-                      const businessName = booking.business_resources?.businesses?.name || 'N/A';
+                      const businessName = (booking.business_resources?.businesses as any)?.name || 'Unknown Business';
                       const fieldName = booking.business_resources?.name || 'N/A';
                       
                       return (
