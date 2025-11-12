@@ -758,6 +758,7 @@ export default function UserDashboard() {
                             
                             const slotStartTime = booking.slots?.start_time ? new Date(booking.slots.start_time) : null;
                             const slotEndTime = booking.slots?.end_time ? new Date(booking.slots.end_time) : null;
+                            const businessName = booking.business_resources?.businesses?.name || 'N/A';
                             const fieldName = booking.business_resources?.name || 'N/A';
                             
                             return (
@@ -777,7 +778,7 @@ export default function UserDashboard() {
                                 <TableCell>
                                   {slotStartTime && slotEndTime ? (
                                     <div className="text-sm">
-                                      {format(slotStartTime, "h:mm a")} - {format(slotEndTime, "h:mm a")} [{fieldName}]
+                                      {format(slotStartTime, "h:mm a")} - {format(slotEndTime, "h:mm a")} {businessName}[{fieldName}]
                                     </div>
                                   ) : (
                                     <span className="text-muted-foreground">-</span>
@@ -834,6 +835,7 @@ export default function UserDashboard() {
                       
                       const slotStartTime = booking.slots?.start_time ? new Date(booking.slots.start_time) : null;
                       const slotEndTime = booking.slots?.end_time ? new Date(booking.slots.end_time) : null;
+                      const businessName = booking.business_resources?.businesses?.name || 'N/A';
                       const fieldName = booking.business_resources?.name || 'N/A';
                       
                       return (
@@ -866,7 +868,7 @@ export default function UserDashboard() {
                               <div className="font-medium text-sm text-muted-foreground">Time & Place</div>
                               {slotStartTime && slotEndTime ? (
                                 <div className="text-sm">
-                                  {format(slotStartTime, "h:mm a")} - {format(slotEndTime, "h:mm a")} [{fieldName}]
+                                  {format(slotStartTime, "h:mm a")} - {format(slotEndTime, "h:mm a")} {businessName}[{fieldName}]
                                 </div>
                               ) : (
                                 <span className="text-muted-foreground">-</span>
