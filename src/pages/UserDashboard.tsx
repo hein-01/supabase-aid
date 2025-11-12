@@ -199,13 +199,14 @@ export default function UserDashboard() {
           slots (
             start_time,
             end_time,
-            slot_price
+            slot_price,
+            resource_id
           ),
-          business_resources (
+          resource:business_resources!resource_id (
             name,
             business_id,
             service_id,
-            businesses (
+            business:businesses (
               id,
               name,
               owner_id
@@ -238,20 +239,21 @@ export default function UserDashboard() {
           slots (
             start_time,
             end_time,
-            slot_price
+            slot_price,
+            resource_id
           ),
-          business_resources!inner (
+          resource:business_resources!inner (
             name,
             business_id,
             service_id,
-            businesses!inner (
+            business:businesses!inner (
               id,
               name,
               owner_id
             )
           )
         `)
-        .eq('business_resources.businesses.owner_id', user.id)
+        .eq('resource.business.owner_id', user.id)
         .eq('status', 'Pending')
         .order('created_at', { ascending: false });
 
@@ -268,7 +270,7 @@ export default function UserDashboard() {
       // Fetch service contact_phone for each booking
       const bookingsWithServiceInfo = await Promise.all(
         uniqueBookings.map(async (booking) => {
-          const serviceId = booking.business_resources?.service_id;
+          const serviceId = (booking as any).resource?.service_id;
           if (serviceId) {
             const { data: serviceData } = await supabase
               .from('services')
@@ -330,11 +332,11 @@ export default function UserDashboard() {
           // Fetch the resource to check business ownership
           const { data: resourceData } = await supabase
             .from('business_resources')
-            .select('business_id, businesses!inner(owner_id)')
+            .select('business_id, business:businesses!inner(owner_id)')
             .eq('id', newBooking.resource_id)
             .maybeSingle();
 
-          const isOwner = resourceData?.businesses?.owner_id === user.id;
+          const isOwner = (resourceData as any)?.business?.owner_id === user.id;
           const isCustomer = newBooking.user_id === user.id;
 
           if (isOwner || isCustomer) {
@@ -729,7 +731,7 @@ export default function UserDashboard() {
               </h3>
               {loadingPendingBookings ? (
                 <LoadingSpinner />
-              ) : pendingBookings.filter(booking => booking.business_resources?.businesses?.owner_id !== user?.id).length > 0 ? (
+              ) : pendingBookings.filter(booking => (booking as any).resource?.business?.owner_id !== user?.id).length > 0 ? (
                 <>
                   {/* Desktop Table View */}
                   <Card className="hidden md:block">
@@ -748,7 +750,7 @@ export default function UserDashboard() {
                           </TableRow>
                         </TableHeader>
                         <TableBody>
-                          {pendingBookings.filter(booking => booking.business_resources?.businesses?.owner_id !== user?.id).map((booking) => {
+                          {pendingBookings.filter(booking => (booking as any).resource?.business?.owner_id !== user?.id).map((booking) => {
                             const createdAt = new Date(booking.created_at);
                             const confirmationWindowEnd = addHours(createdAt, 2);
                             const now = new Date();
@@ -758,20 +760,13 @@ export default function UserDashboard() {
                             
                             const slotStartTime = booking.slots?.start_time ? new Date(booking.slots.start_time) : null;
                             const slotEndTime = booking.slots?.end_time ? new Date(booking.slots.end_time) : null;
-                            const businessName = (booking.business_resources?.businesses as any)?.name || 'Unknown Business';
-                            const fieldName = booking.business_resources?.name || 'N/A';
-                            
-                            // Debug log to check data structure
-                            console.log('Booking data:', {
-                              business_resources: booking.business_resources,
-                              businessName,
-                              fieldName
-                            });
+                            const businessName = (booking as any).resource?.business?.name || 'Unknown Business';
+                            const fieldName = (booking as any).resource?.name || 'N/A';
                             
                             return (
                               <TableRow key={booking.id}>
                                 <TableCell className="font-medium">
-                                  {booking.business_resources?.name || 'N/A'}
+                                  {(booking as any).resource?.name || 'N/A'}
                                 </TableCell>
                                 <TableCell>
                                   {slotStartTime ? (
@@ -832,7 +827,7 @@ export default function UserDashboard() {
 
                   {/* Mobile Card View */}
                   <div className="md:hidden space-y-4">
-                    {pendingBookings.filter(booking => booking.business_resources?.businesses?.owner_id !== user?.id).map((booking) => {
+                    {pendingBookings.filter(booking => (booking as any).resource?.business?.owner_id !== user?.id).map((booking) => {
                       const createdAt = new Date(booking.created_at);
                       const confirmationWindowEnd = addHours(createdAt, 2);
                       const now = new Date();
@@ -842,8 +837,8 @@ export default function UserDashboard() {
                       
                       const slotStartTime = booking.slots?.start_time ? new Date(booking.slots.start_time) : null;
                       const slotEndTime = booking.slots?.end_time ? new Date(booking.slots.end_time) : null;
-                      const businessName = (booking.business_resources?.businesses as any)?.name || 'Unknown Business';
-                      const fieldName = booking.business_resources?.name || 'N/A';
+                      const businessName = (booking as any).resource?.business?.name || 'Unknown Business';
+                      const fieldName = (booking as any).resource?.name || 'N/A';
                       
                       return (
                         <Card key={booking.id}>
@@ -852,7 +847,7 @@ export default function UserDashboard() {
                               <div>
                                 <div className="font-medium text-sm">Service</div>
                                 <div className="font-semibold">
-                                  {booking.business_resources?.name || 'N/A'}
+                                  {(booking as any).resource?.name || 'N/A'}
                                 </div>
                               </div>
                               <span className="px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded text-xs font-medium">
